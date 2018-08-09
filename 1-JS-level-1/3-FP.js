@@ -188,7 +188,7 @@ learnFunc(); */
     even after the parent function has closed.
 */
 
-function teach(sub) {
+/* function teach(sub) {
     console.log('teaching ' + sub);
     let notes = sub + "-notes";
     let fun = "bla bla bla ";
@@ -203,7 +203,7 @@ function teach(sub) {
 let learnFunc = teach('.js');
 learnFunc();
 
-
+ */
 
 //------------------------------------------------------------
 
@@ -214,3 +214,240 @@ learnFunc();
 */
 
 //------------------------------------------------------------
+
+// - to abstract public-behav of any js-module
+
+/*
+
+    e.g  counter module
+
+         - count
+         - doCount()
+         - getCount()
+
+*/
+
+// self-executable  or IIFE function     ( module pattern )
+/* 
+const counter=(function() {
+    let count = 0; // private
+    function pri(){
+        //..
+    }
+    function doCount() {
+        count++
+    }
+    function getCount() {
+        return count;
+    }
+    return {
+        inc: doCount,
+        get: getCount
+    };
+
+})();
+ */
+
+//------------------------------------------------------------
+
+// Quiz
+/* 
+let myFunctions = [];
+//---------------------------------
+function getF(i) {
+    var func = function () {
+        console.log(i);
+    }
+    return func;
+}
+for (var i = 0; i < 2; i++) {
+    // myFunctions.push(getF(i));
+    myFunctions.push((function (i) { return function () { console.log(i) } })(i));
+}
+//---------------------------------
+myFunctions[0]();
+myFunctions[1]();
+
+ */
+
+
+//------------------------------------------------------------
+
+
+
+//---------------------------------------------------------------
+// Function-binding  i.e binding/invoking function by an object
+//---------------------------------------------------------------
+
+/*
+    a. static function-binding
+    b. dynamic function-binding
+*/
+
+
+//---------------------------------------------------------------
+// a. static function-binding
+//---------------------------------------------------------------
+
+/* 
+let p1 = {
+    name: 'Nag',
+    sayName: function () {
+        console.log('im ' + this.name);
+    }
+};
+
+let p2 = {
+    name: 'Ria',
+    sayName: function () {
+        console.log('im ' + this.name);
+    }
+}; */
+
+// or
+/* 
+function sayNameForAll() {
+    console.log('im ' + this.name);
+}
+let p1 = {
+    name: 'Nag',
+    sayName: sayNameForAll //
+}
+let p2 = {
+    name: 'Ria',
+    sayName: sayNameForAll //
+}
+p1.sayName();
+p2.sayName();
+// sayNameForAll(); // error, function not bound to any object */
+
+
+//---------------------------------------------------------------
+
+// Quiz
+
+/* 
+let pName = "global";
+let person = {
+    pName: 'Nag',
+    sayName: function () {
+        let pName = "local";
+        console.log('im ' + pName); // reads scope hierarcy data
+        console.log('im ' + person.pName); // obj' data
+        console.log('im '+this.pName); // obj's data who execute this function
+    }
+};
+// person.sayName();
+
+let oldPerson=person;
+person={pName:'Ria'}
+oldPerson.sayName(); */
+
+
+
+//---------------------------------------------------------------
+// b. dynamic function-binding
+//---------------------------------------------------------------
+
+
+/* let p = { name: 'Nag' };
+let e = { name: 'IBM' };
+
+
+let greetLib = {
+    sayName: function (message, from) {
+        console.log(message + ' - im ' + this.name + ": " + from);
+    }
+}; */
+// greetLib.sayName();
+
+// way-1 : call()
+// greetLib.sayName.call(p, "hello", "chennai");
+// greetLib.sayName.call(e, "hey", "bengalore");
+
+// console.log()
+
+// way-2 : apply()
+// greetLib.sayName.apply(p, ["hello", "chennai"]);
+// greetLib.sayName.apply(e, ["hey", "bengalore"]);
+
+//way-3 : bind()
+/* let newF=greetLib.sayName.bind(p,"hello","chennai");
+newF();
+newF();
+let newFF=greetLib.sayName.bind(e);
+newFF('hey','blr');
+newFF('dude','hyd');
+ */
+
+//---------------------------------------------------------------
+
+// summary on function-binding
+
+/* function func() {
+    console.log(this);
+}
+func();
+
+let o1 = { name: 'O1', f: func } // static function-binding
+o1.f()
+
+let o2 = { name: 'O2' }
+func.call(o2)   // dynamic function binding
+func.apply(o2);
+func.bind(o2)() */
+
+
+//---------------------------------------------------------------
+
+// Quiz
+
+
+/* // Model
+let tnr = { name: 'Nag' }
+
+// Tng-service
+let ibmTngService = {
+    doTraining: function () {
+        console.log(this.name + " giving training...")
+    }
+}
+
+// View
+let tng = ibmTngService.doTraining.bind(tnr);
+tng();
+tng();
+tng();
+
+ */
+
+//---------------------------------------------------------------
+
+// Quiz
+
+let e1 = { name: 'E1' }
+let e2 = { name: 'E2' }
+
+let tnr = {
+    name: 'Nag',
+    doTeach: function () {
+        console.log(this.name + " teaching .js");
+        let notes = ".js-notes";
+        let self = this;
+        let doLearn = function () {
+            console.log(this.name + '-learning with ' + notes + " from " + self.name);
+        }
+        console.log('teaching ends..');
+        return doLearn;
+    }
+}
+// day-1
+let learnFunc = tnr.doTeach();
+learnFunc.call(e1);
+learnFunc.call(e2);
+
+//day-2
+let tempTnr = { name: 'Kishore' };
+learnFunc = tnr.doTeach.call(tempTnr);
+learnFunc.call(e1);
+learnFunc.call(e2);

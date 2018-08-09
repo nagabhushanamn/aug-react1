@@ -69,3 +69,22 @@ level-3
     4. javascript as client-side or server-side language
 
 -------------------------------------------------------------------
+
+
+// in 2015 , ES6
+
+
+   New-syntax
+
+   1. string interpolation
+   2. function with default-params & rest-param
+   3. let & const keywords with block-scope
+   4. New OOP with class-syntax
+   5. de-structuring
+   6. spread operator
+   7. octal & binary numbers
+   8. obj-literal enhancements
+   9. symbol data-type
+   10. for-of loop
+   11. Iterable objects
+   12. arrow-functions
