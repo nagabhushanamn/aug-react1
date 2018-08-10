@@ -74,7 +74,7 @@ let newArr = [...arr1, 4, 5, 6, ...arr2];
 
 // es5
 
-let name = "Nag";
+/* let name = "Nag";
 let age = 34;
 
 let p1 = {
@@ -85,11 +85,11 @@ let p1 = {
         //..
     },
 
-};
+}; */
 
 
 // es6
-let addressType = "office"; // home | office | vacation
+/* let addressType = "office"; // home | office | vacation
 let p2 = {
     name,
     age,
@@ -105,7 +105,7 @@ let p2 = {
 
     }
 
-};
+}; */
 
 
 //---------------------------------------
@@ -320,10 +320,3 @@ person.f2(); */
 
 
 //-----------------------------------------------------------
-
-
-// new collections
-
-// set , map
-
-..
