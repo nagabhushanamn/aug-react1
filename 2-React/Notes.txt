@@ -37,17 +37,14 @@ imp-note : when component's state change,always will re-render
 
 
 
--------------------------------------------
+----------------------------------------------------------
 
 in component based arch  ==> uni-directional data-flow
 
 data/props will go down
 action/event will come up
 
---------------------------------------------  
-
-
-
+----------------------------------------------------------  
 
 working with React.js
 -----------------------
@@ -56,4 +53,19 @@ working with React.js
 
 step-1 : define ui component class
 step-2 : instantiate where you need
+
+
+----------------------------------------------------------
+
+cli tool to scafold react based application
+
+
+> npm i create-react-app -g
+> create-react-app <app-name>
+> cd <app-name>
+> npm i bootstrap --save
+> npm start
+
+
+
 
