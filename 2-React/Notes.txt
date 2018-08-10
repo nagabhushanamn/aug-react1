@@ -1,0 +1,59 @@
+
+
+
+HTML component/element/tag
+---------------------------
+
+
+=> every html-tag/element/component
+   is an instance of HTMLXXXElement class
+
+
+ e.g
+
+ <div></div>  instanceof 'HTMLDivElement' class
+
+
+ i.e
+
+  HTMLDivElement      ==> component-class
+  <div></div>         ==> component
+
+
+-------------------------------------------
+
+html-component
+--------------
+
+- props    ==> data given by parent-component 
+- state    ==> comp's own data
+
+ e.g input-element
+
+         state : i.e 'value'
+
+imp-note : when component's state change,always will re-render
+
+
+
+
+-------------------------------------------
+
+in component based arch  ==> uni-directional data-flow
+
+data/props will go down
+action/event will come up
+
+--------------------------------------------  
+
+
+
+
+working with React.js
+-----------------------
+
+2 steps
+
+step-1 : define ui component class
+step-2 : instantiate where you need
+
