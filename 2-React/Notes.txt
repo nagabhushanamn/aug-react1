@@ -74,15 +74,17 @@ cli tool to scafold react based application
 React - component API
 ---------------------
 
-topic-1:
   - props   ==> data from parent-component to child  ( immutable )
   - state   ==> component's own data  ( mutable )
 
-topic-2:
-   - inter component communication
+  - inter component communication
 
-topic-3 :
-   - component life-cycles   
+  - component life-cycles   
+
+  - container components
+
+
+
 
 --------------------------------------------
 

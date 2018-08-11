@@ -1,0 +1,52 @@
+{
+  "loopback-component-explorer": {
+    "mountPath": "/explorer",
+    "generateOperationScopedModels": true,
+    "restApiRoot": "/api",
+    "enable": true,
+    "handleErrors": true,
+    "errorStackInResponse": false,
+    "handleCustomRemoteMethods": false,
+    "exclude": [
+      {
+        "model": "comment"
+      },
+      {
+        "methods": "find"
+      },
+      {
+        "model": "post",
+        "methods": "find"
+      },
+      {
+        "model": "person",
+        "methods": [
+          "find",
+          "create"
+        ]
+      }
+    ],
+    "hideIrrelevantMethods": true,
+    "attributes": {
+      "posts": [
+        "title"
+      ]
+    },
+    "include": [
+      {
+        "methods": "customMethod"
+      },
+      {
+        "model": "post",
+        "methods": "customMethod"
+      },
+      {
+        "model": "person",
+        "methods": [
+          "customMethod1",
+          "customMethod2"
+        ]
+      }
+    ]
+  }
+}

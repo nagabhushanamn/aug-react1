@@ -5,6 +5,10 @@ import PropTypes from 'prop-types'
 import Greeting from './Greeting';
 import ActionButton from './ActionButton';
 import TotalCountDisplay from './TotalCountDisplay';
+import Box from './Box';
+import Employee from './Employee';
+import Product from './Product';
+import Parent from './Parent';
 
 
 class App extends Component {
@@ -34,7 +38,7 @@ class App extends Component {
     // let by = this.props.by;
     // or
     let { title, by } = this.props;
-    let { totalCount,message } = this.state;
+    let { totalCount, message } = this.state;
     return (
       <div className="container">
 
@@ -45,6 +49,17 @@ class App extends Component {
         <div className="card">
           <div className="card-header"> App component  : <span className="badge badge-dark">{totalCount}</span></div>
           <div className="card-body">
+
+            <Parent />
+
+            {/* <Box>
+              <Product />
+              <Product />
+            </Box>
+
+            <Box>
+              <Employee />
+            </Box> */}
 
             {
               /* 
@@ -75,10 +90,10 @@ class App extends Component {
             }
 
             {
-              
-              [10,-10]
-              .map((n,idx)=><ActionButton key={idx} value={n} onAction={e => { this.incrementTotalCount(e) }} /> )
-              
+
+              [10, -10]
+                .map((n, idx) => <ActionButton key={idx} value={n} onAction={e => { this.incrementTotalCount(e) }} />)
+
             }
 
 

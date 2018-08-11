@@ -33,8 +33,8 @@ class Greeting extends Component {
         }, 2000);
 
         this.interval = setInterval(() => {
-            let timeNow = new Date().toLocaleTimeString();
-            this.setState({ timeNow })
+            //let timeNow = new Date().toLocaleTimeString();
+            // this.setState({ timeNow })
         }, 500);
 
     }
@@ -49,7 +49,7 @@ class Greeting extends Component {
     }
     componentWillUnmount() {
         console.log('Greeting::componentWillUnmount()');
-        clearInterval(this.interval)
+        //clearInterval(this.interval)
     }
 }
 Greeting.propTypes = {
