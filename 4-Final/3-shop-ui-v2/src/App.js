@@ -9,51 +9,20 @@ import {
   Link
 } from 'react-router-dom'
 
+import { connect } from 'react-redux';
+
+import { loadProducts } from './actions/products';
+import store from './store';
+
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      cart: {},
-      products: []
-    };
-  }
-  componentDidMount() {
-    let apiUrl = "http://localhost:8080/api/products";
-    let promise = fetch(apiUrl); // IO
-    promise
-      .then(response => response.json())
-      .then(items => {
-        this.setState({ products: items });
-      });
-  }
-  addToCart(item, qty) {
-    let id = item.id;
-    let { cart } = this.state;
-    let line;
-    if (!cart[id]) {
-      line = {
-        [id]: { item, qty }
-      }
-    } else {
-      line = cart[id];
-      line = Object.assign({}, line, { qty: line.qty + qty })
-      line = { [id]: line }
-    }
-    cart = Object.assign({}, cart, line)
-    this.setState({ cart })
-  }
   renderProducts() {
-    let { products, cart, isCartOpen } = this.state;
-    if (!isCartOpen) {
-      return products.map((product, idx) => {
-        return <Product onBuy={(item, qty) => this.addToCart(item, qty)} product={product} key={idx} />
-      })
-    } else {
-      return <ViewCart cart={cart} />
-    }
+    let { products } = this.props;
+    return products.map((product, idx) => {
+      return <Product product={product} key={idx} />
+    })
   }
   render() {
-    let { cart } = this.state;
+    let { cart } = this.props;
     let itemsCount = Object.keys(cart).length;
     return (
       <div className="container">
@@ -79,4 +48,11 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    products: state.products,
+    cart: state.cart
+  };
+}
+
+export default connect(mapStateToProps, null)(App);

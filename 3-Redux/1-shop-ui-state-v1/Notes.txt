@@ -1,0 +1,23 @@
+
+
+
+// shop-ui
+//-----------------------
+step-1 : ui-state/ui-model
+        - products
+        - reviews
+        - cart
+        .....
+step-2 : identify actions
+        - LOAD_PRODUCTS
+        - LOAD_REVIEWS
+        - ADD_NEW_REVIEW
+        - BUY
+        - ......
+step-3 : define action-creators
+        ==> function whicj action with/without pay-load 
+step-4 : reducers    
+         ==> pure-function   which produce new state based on action 
+step-5 : create store  with initial-state & reducers 
+
+

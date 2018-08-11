@@ -9,44 +9,32 @@ import {
   Link
 } from 'react-router-dom'
 
+import { loadProducts } from './actions/products';
+import store from './store';
+
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       cart: {},
-      products: []
+      products: [] 
     };
   }
   componentDidMount() {
-    let apiUrl = "http://localhost:8080/api/products";
-    let promise = fetch(apiUrl); // IO
-    promise
-      .then(response => response.json())
-      .then(items => {
-        this.setState({ products: items });
-      });
-  }
-  addToCart(item, qty) {
-    let id = item.id;
-    let { cart } = this.state;
-    let line;
-    if (!cart[id]) {
-      line = {
-        [id]: { item, qty }
-      }
-    } else {
-      line = cart[id];
-      line = Object.assign({}, line, { qty: line.qty + qty })
-      line = { [id]: line }
-    }
-    cart = Object.assign({}, cart, line)
-    this.setState({ cart })
+    store.subscribe(() => {
+      console.log('App - subscribed...');
+      let state = store.getState();
+      let products = state.products;
+      let cart = state.cart;
+      this.setState({ products, cart });
+    });
+    store.dispatch(loadProducts())
   }
   renderProducts() {
     let { products, cart, isCartOpen } = this.state;
     if (!isCartOpen) {
       return products.map((product, idx) => {
-        return <Product onBuy={(item, qty) => this.addToCart(item, qty)} product={product} key={idx} />
+        return <Product product={product} key={idx} />
       })
     } else {
       return <ViewCart cart={cart} />
